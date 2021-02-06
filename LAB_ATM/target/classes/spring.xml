@@ -6,10 +6,37 @@
         http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd">
-    <bean id="cardDataBase"
-          class="atm.cardDataBase">
-        <constructor-arg value="1234"/>
-        <constructor-arg value="1234"/>
-        <constructor-arg value="100000"/>
+
+
+    <bean id="cardDataBase1" class="atm.cardDataBase">
+        <property name="cardNum" value="1234"></property>
+        <property name="password" value="1234"></property>
+        <property name="balance" value="10000000"></property>
+    </bean>
+
+    <bean id="cardDataBase2" class="atm.cardDataBase">
+        <property name="cardNum" value="5678"></property>
+        <property name="password" value="1234"></property>
+        <property name="balance" value="10000000"></property>
+    </bean>
+
+    <bean id="cardDataBase3" class="atm.cardDataBase">
+        <property name="cardNum" value="9012"></property>
+        <property name="password" value="1234"></property>
+        <property name="balance" value="10000000"></property>
+    </bean>
+
+    <bean id="bank" class="atm.Bank">
+        <property name="cardDataBases">
+            <list>
+                <ref bean="cardDataBase1"></ref>
+                <ref bean="cardDataBase2"></ref>
+                <ref bean="cardDataBase3"></ref>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="systemFacade" class="atm.SystemFacade">
+        <constructor-arg ref="bank"></constructor-arg>
     </bean>
 </beans>

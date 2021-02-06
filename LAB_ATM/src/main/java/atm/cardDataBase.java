@@ -35,7 +35,18 @@ public class cardDataBase {
         return balance;
     }
 
+
     public void setBalance(int balance) {
         this.balance = balance;
+    }
+
+
+    @Override
+    public String toString() {
+        return "cardDataBase{" +
+                "cardNum='" + cardNum + '\'' +
+                ", password='" + password + '\'' +
+                ", balance=" + balance +
+                '}';
     }
 }

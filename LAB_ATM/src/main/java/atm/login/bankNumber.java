@@ -14,6 +14,7 @@ public class bankNumber extends ChainOfResponsibility{
 
     @Override
     public void write(String num, String pass) {
+        System.out.println(atm.getCardDataBases().size());
         password password = new password();
 
         for (int i = 0; i < cardDataBases.size(); i++){

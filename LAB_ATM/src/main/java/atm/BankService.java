@@ -1,5 +1,8 @@
 package atm;
 
 public interface BankService {
-    public void createUser();
+    void info(String cardNumber);
+    void withdraw(int sum, String cardNumber);
+    void topUp(int sum, String cardNumber);
+    boolean check(String username, String pinCode);
 }

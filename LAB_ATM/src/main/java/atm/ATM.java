@@ -7,11 +7,22 @@ public class ATM {
     private ArrayList<cardDataBase> cardDataBases = new ArrayList<>();
     Scanner in = new Scanner(System.in);
 
-    public void addCardDataBase(cardDataBase cardDataBase){
-        cardDataBases.add(cardDataBase);
+    public ArrayList<cardDataBase> getCardDataBases() {
+        return cardDataBases;
     }
 
-//    public void addBank(Bank bank){
+    public void setCardDataBases(ArrayList<cardDataBase> cardDataBases) {
+        this.cardDataBases = cardDataBases;
+    }
+
+    public Scanner getIn() {
+        return in;
+    }
+
+    public void setIn(Scanner in) {
+        this.in = in;
+    }
+    //    public void addBank(Bank bank){
 //        banks.add(bank);
 //    }
 //

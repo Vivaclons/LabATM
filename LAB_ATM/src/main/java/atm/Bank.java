@@ -3,23 +3,13 @@ package atm;
 import java.util.ArrayList;
 
 public class Bank implements BankService{
-    private String bankName;
     private ArrayList<cardDataBase> cardDataBases = new ArrayList<>();
 
     public Bank() {
     }
 
-    public Bank(String bankName, ArrayList<cardDataBase> cardDataBases) {
-        this.bankName = bankName;
+    public Bank(ArrayList<cardDataBase> cardDataBases) {
         this.cardDataBases = cardDataBases;
-    }
-
-    public String getBankName() {
-        return bankName;
-    }
-
-    public void setBankName(String bankName) {
-        this.bankName = bankName;
     }
 
     public ArrayList<cardDataBase> getCardDataBases() {
@@ -30,12 +20,46 @@ public class Bank implements BankService{
         this.cardDataBases = cardDataBases;
     }
 
-    public void addCardBank(cardDataBase cardDataBase){
-        cardDataBases.add(cardDataBase);
+    public cardDataBase cardInfo(String cardNum){
+        for(cardDataBase cardDataBase: cardDataBases){
+            if(cardNum.equals(cardDataBase.getCardNum())){
+                return cardDataBase;
+            }
+        }
+        return null;
     }
 
     @Override
-    public void createUser() {
+    public void info(String cardNumber) {
+        cardDataBase cardDataBase = cardInfo(cardNumber);
+        System.out.println("Card number: " + cardDataBase.getCardNum());
+        System.out.println("Balance: " + cardDataBase.getBalance());
+    }
 
+    @Override
+    public void withdraw(int sum, String cardNumber) {
+        cardDataBase cardDataBase = cardInfo(cardNumber);
+        if(cardDataBase.getBalance() == 0 || cardDataBase.getBalance() < 0){
+            System.out.println("ERROR!");
+        }
+        cardDataBase.setBalance(cardDataBase.getBalance() - sum);
+        System.out.println("Success!");
+    }
+
+    @Override
+    public void topUp(int sum, String cardNumber) {
+        cardDataBase cardDataBase = cardInfo(cardNumber);
+        cardDataBase.setBalance(cardDataBase.getBalance() - sum);
+        System.out.println("Success!");
+    }
+
+    @Override
+    public boolean check(String username, String pinCode) {
+        for (cardDataBase cardDataBase : cardDataBases) {
+            if (username.equals(cardDataBase.getCardNum()) && pinCode.equals(cardDataBase.getPassword())) {
+                return true;
+            }
+        }
+        return false;
     }
 }

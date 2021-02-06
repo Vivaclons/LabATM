@@ -9,7 +9,6 @@ import java.util.Scanner;
 
 public class password extends ChainOfResponsibility {
 
-    SystemFacade systemFacade = new SystemFacade();
     private ArrayList<cardDataBase> cardDataBases = new ArrayList<>();
     Scanner in = new Scanner(System.in);
 
@@ -20,7 +19,7 @@ public class password extends ChainOfResponsibility {
         for(int i = 0; i < cardDataBases.size(); i++){
             if(cardDataBases.get(i).getCardNum().equals(num)){
                 if(cardDataBases.get(i).getPassword().equals(pass)){
-                    systemFacade.menu(num);
+//                    systemFacade.menu(num);
                     System.out.println("Right password");
                 } else{
                     System.out.println("ERROR!");
