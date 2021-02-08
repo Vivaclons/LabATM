@@ -30,27 +30,42 @@ public class Bank implements BankService{
     }
 
     @Override
-    public void info(String cardNumber) {
-        cardDataBase cardDataBase = cardInfo(cardNumber);
-        System.out.println("Card number: " + cardDataBase.getCardNum());
-        System.out.println("Balance: " + cardDataBase.getBalance());
-    }
-
-    @Override
-    public void withdraw(int sum, String cardNumber) {
-        cardDataBase cardDataBase = cardInfo(cardNumber);
-        if(cardDataBase.getBalance() == 0 || cardDataBase.getBalance() < 0){
-            System.out.println("ERROR!");
+    public cardDataBase info(String cardNumber) {
+        for(cardDataBase cardDataBase: cardDataBases){
+            if(cardNumber.equals(cardDataBase.getCardNum())){
+                System.out.println("Card number: " + cardDataBase.getCardNum());
+                System.out.println("Card balance: " + cardDataBase.getBalance());
+                return cardDataBase;
+            }
         }
-        cardDataBase.setBalance(cardDataBase.getBalance() - sum);
-        System.out.println("Success!");
+        return null;
     }
 
     @Override
-    public void topUp(int sum, String cardNumber) {
-        cardDataBase cardDataBase = cardInfo(cardNumber);
-        cardDataBase.setBalance(cardDataBase.getBalance() - sum);
-        System.out.println("Success!");
+    public cardDataBase withdraw(int sum, String cardNumber) {
+        for(cardDataBase cardDataBase: cardDataBases){
+            if(cardNumber.equals(cardDataBase.getCardNum())){
+                if(cardDataBase.getBalance() == 0 || cardDataBase.getBalance() < 0){
+                    System.out.println("ERROR!");
+                }
+                cardDataBase.setBalance(cardDataBase.getBalance() - sum);
+                System.out.println("Success!");
+                return cardDataBase;
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public cardDataBase topUp(int sum, String cardNumber) {
+        for(cardDataBase cardDataBase: cardDataBases){
+            if(cardNumber.equals(cardDataBase.getCardNum())){
+                cardDataBase.setBalance(cardDataBase.getBalance() + sum);
+                System.out.println("Success!");
+                return cardDataBase;
+            }
+        }
+        return null;
     }
 
     @Override

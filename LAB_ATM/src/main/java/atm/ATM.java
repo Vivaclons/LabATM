@@ -15,24 +15,15 @@ public class ATM {
         this.cardDataBases = cardDataBases;
     }
 
-    public Scanner getIn() {
-        return in;
-    }
+    public void add(){
+        cardDataBase cardDataBase1 = new cardDataBase("1234", "1234", 100000);
+        cardDataBase cardDataBase2 = new cardDataBase("5678", "1234", 100000);
+        cardDataBase cardDataBase3 = new cardDataBase("9012", "1234", 100000);
 
-    public void setIn(Scanner in) {
-        this.in = in;
+        cardDataBases.add(cardDataBase1);
+        cardDataBases.add(cardDataBase2);
+        cardDataBases.add(cardDataBase3);
     }
-    //    public void addBank(Bank bank){
-//        banks.add(bank);
-//    }
-//
-//    public void addBankCard(Bank bank, cardDataBase cardDataBase){
-//        for(Bank bank1 : banks){
-//            if(bank.getBankName().equals(bank1.getBankName())){
-//                bank.addCardBank(cardDataBase);
-//            }
-//        }
-//    }
 
     public void withDraw(String num){
 

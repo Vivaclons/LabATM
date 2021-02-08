@@ -6,15 +6,17 @@ public class SystemFacade {
 
     private cardDataBase card;
     private BankService bankService;
-
+    ATM atm = new ATM();
 
     public SystemFacade(BankService bankService) {
         this.bankService = bankService;
     }
 
     public void menu(){
+        atm.add();
         Scanner in = new Scanner(System.in);
         System.out.println("Welcome:");
+        String local;
         while(true){
             System.out.println("Enter login:");
             String username = in.next();
@@ -22,6 +24,7 @@ public class SystemFacade {
             String pass = in.next();
             if(bankService.check(username, pass)){
                 card = ((Bank) bankService).cardInfo(username);
+                local = username;
                 break;
             }
         }
@@ -36,17 +39,17 @@ public class SystemFacade {
 
             if(choice.equals("1")){
                 System.out.println("Information about credit card: ");
-                bank.info(card.getCardNum());
+                ((Bank) bankService).info(local);
             } else if(choice.equals("2")){
                 System.out.println("Withdraw: ");
                 System.out.println("Sum: ");
                 int sum = in.nextInt();
-                bank.withdraw(sum, card.getCardNum());
+                ((Bank) bankService).withdraw(sum, local);
             } else if(choice.equals("3")){
                 System.out.println("Top up: ");
                 System.out.println("Sum: ");
                 int sum = in.nextInt();
-                bank.topUp(sum, card.getCardNum());
+                ((Bank) bankService).topUp(sum, local);
             } else{
                 System.exit(0);
             }
