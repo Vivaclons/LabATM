@@ -15,5 +15,6 @@ public class AtmApplication {
         );
         SystemFacade systemFacade = context.getBean("systemFacade", SystemFacade.class);
         systemFacade.menu();
+        context.close();
     }
 }

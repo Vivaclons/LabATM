@@ -16,17 +16,15 @@ public class SystemFacade {
         atm.add();
         Scanner in = new Scanner(System.in);
         System.out.println("Welcome:");
-        String local;
-        while(true){
-            System.out.println("Enter login:");
-            String username = in.next();
-            System.out.println("Enter password:");
-            String pass = in.next();
-            if(bankService.check(username, pass)){
-                card = ((Bank) bankService).cardInfo(username);
-                local = username;
-                break;
-            }
+        String local = "";
+
+        System.out.println("Enter login:");
+        String username = in.next();
+        System.out.println("Enter password:");
+        String pass = in.next();
+        if(bankService.check(username, pass)){
+            card = ((Bank) bankService).cardInfo(username);
+            local = username;
         }
 
         while(true){
