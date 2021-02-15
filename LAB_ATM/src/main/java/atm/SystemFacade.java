@@ -13,6 +13,7 @@ public class SystemFacade {
     }
 
     public void menu(){
+        DBConnection dbConnection = new DBConnection();
         atm.add();
         Scanner in = new Scanner(System.in);
         System.out.println("Welcome:");
@@ -37,17 +38,20 @@ public class SystemFacade {
 
             if(choice.equals("1")){
                 System.out.println("Information about credit card: ");
-                ((Bank) bankService).info(local);
+                dbConnection.card();
+//                ((Bank) bankService).info(local);
             } else if(choice.equals("2")){
                 System.out.println("Withdraw: ");
                 System.out.println("Sum: ");
                 int sum = in.nextInt();
-                ((Bank) bankService).withdraw(sum, local);
+                dbConnection.withDraw(sum, local);
+//                ((Bank) bankService).withdraw(sum, local);
             } else if(choice.equals("3")){
                 System.out.println("Top up: ");
                 System.out.println("Sum: ");
                 int sum = in.nextInt();
-                ((Bank) bankService).topUp(sum, local);
+                dbConnection.topUp(sum, local);
+//                ((Bank) bankService).topUp(sum, local);
             } else{
                 System.exit(0);
             }
@@ -85,4 +89,5 @@ public class SystemFacade {
 //    @Override
 //    public void write(String num, String pass) {
 //    }
+
 }

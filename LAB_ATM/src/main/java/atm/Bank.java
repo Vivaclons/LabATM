@@ -5,6 +5,8 @@ import java.util.ArrayList;
 public class Bank implements BankService{
     private ArrayList<cardDataBase> cardDataBases = new ArrayList<>();
 
+    DBConnection dbConnection = new DBConnection();
+
     public Bank() {
     }
 
@@ -49,6 +51,7 @@ public class Bank implements BankService{
                     System.out.println("ERROR!");
                 }
                 cardDataBase.setBalance(cardDataBase.getBalance() - sum);
+                dbConnection.withDraw(cardDataBase.getBalance(), cardNumber);
                 System.out.println("Success!");
                 return cardDataBase;
             }
@@ -61,6 +64,7 @@ public class Bank implements BankService{
         for(cardDataBase cardDataBase: cardDataBases){
             if(cardNumber.equals(cardDataBase.getCardNum())){
                 cardDataBase.setBalance(cardDataBase.getBalance() + sum);
+                dbConnection.topUp(cardDataBase.getBalance(), cardNumber);
                 System.out.println("Success!");
                 return cardDataBase;
             }

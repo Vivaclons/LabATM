@@ -8,7 +8,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 @SpringBootApplication
 public class AtmApplication {
 
-    public static void main(String[]args) {
+    public static void main(String[] args) {
         SpringApplication.run(AtmApplication.class, args);
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(
                 "spring.xml"
